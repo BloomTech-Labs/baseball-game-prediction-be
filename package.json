@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/Lambda-School-Labs/baseball-game-prediction-be/issues"
   },
-  "homepage": "https://github.com/Lambda-School-Labs/baseball-game-prediction-be#readme"
+  "homepage": "https://github.com/Lambda-School-Labs/baseball-game-prediction-be#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^1.19.3",
+    "sqlite3": "^4.1.0"
+  }
 }
