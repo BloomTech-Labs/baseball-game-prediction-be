@@ -1,10 +1,10 @@
-const express = require('express')
-const server = express()
+const express = require("express");
+const server = express();
 
-server.use(express.json())
+server.use(express.json());
 
-server.get('/', (req, res) => {
-    res.send('api is up')
+server.get("/", (req, res) => {
+  res.send("api is up");
 });
 
-module.exports = server
+module.exports = server;
