@@ -13,7 +13,7 @@ function findTeams() {
 
 function findTeamById(team_id) {
     return db('teams')
-    .where('team_id', team_id)
+    .where('team_id', team_id);
 }
 
 function findTeamsByDivision(division, league) {
@@ -21,10 +21,10 @@ function findTeamsByDivision(division, league) {
     .where({
         division: division,
         league: league
-    })
+    });
 }
 
 function findTeamsByLeague({league}) {
     return db('teams')
-    .where('league', league)
+    .where('league', league);
 }
