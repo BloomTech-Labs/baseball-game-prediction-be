@@ -1,7 +1,9 @@
 const db = require("../../data/dbConfig");
 
-module.exports = {};
+module.exports = {
+  getFavoriteTeams
+};
 
-function getGames() {
-  return db("games").select("*");
+function getFavoriteTeams() {
+  return db("favorite_teams").select("*");
 }
