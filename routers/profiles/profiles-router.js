@@ -1,6 +1,33 @@
 const router = require("express").Router();
 const db = require("./profiles-model");
 
+// Create a profile
+
+router.post("/create", (req, res) => {
+  const { firebase_id } = req.body;
+  console.log(firebase_id);
+  db.getProfileByFirebaseId(firebase_id)
+    .then(profile => {
+      if (profile.length > 0) {
+        res
+          .status(409)
+          .json({ error: "A user with that firebase id already exists" });
+      } else {
+        db.addProfile(firebase_id)
+          .then(newProfile => {
+            res.status(200).json(newProfile);
+          })
+          .catch(err => console.log("error: ", err));
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "Server error creating a profile" });
+    });
+
+  db.addProfile();
+});
+
 // Get all users
 
 router.get("/", (req, res) => {
