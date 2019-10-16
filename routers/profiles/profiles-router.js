@@ -2,7 +2,7 @@ const router = require("express").Router();
 const db = require("./profiles-model");
 const firebase = require("../../firebase/dev_firebase");
 
-// console.log(process.env);
+console.log(process.env);
 
 // Create a profile
 
