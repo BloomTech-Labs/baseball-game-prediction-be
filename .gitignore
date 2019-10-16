@@ -101,4 +101,4 @@ public
 .tern-port
 
 *.db3
-/config
+/config/keys_dev.js

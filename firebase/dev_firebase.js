@@ -1,7 +1,7 @@
 const firebase = require("firebase/app");
 require("firebase/auth");
 
-const firebaseApiKey = process.env.DEV_FIREBASE_API_KEY;
+const firebaseApiKey = require("../config/keys").firebaseAPIKey;
 
 // TODO: Replace the following with your app's Firebase project configuration
 var firebaseConfig = {

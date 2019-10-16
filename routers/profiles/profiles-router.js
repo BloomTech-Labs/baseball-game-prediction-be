@@ -1,8 +1,12 @@
 const router = require("express").Router();
 const db = require("./profiles-model");
-const firebase = require("../../firebase/dev_firebase");
+let firebase;
 
-console.log(process.env);
+if (process.env.NODE_ENV === "production") {
+  firebase = require("../../firebase/prod_firebase");
+} else {
+  firebase = require("../../firebase/dev_firebase");
+}
 
 // Create a profile
 
@@ -12,8 +16,6 @@ router.post("/create", (req, res) => {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(newUser => {
-      console.log(newUser.user.uid);
-
       const firebase_id = newUser.user.uid;
 
       db.getProfileByFirebaseId(firebase_id)
