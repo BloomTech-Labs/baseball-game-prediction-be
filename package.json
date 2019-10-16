@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "jest"
+    "test": "jest",
+    "heroku-postbuild": "npm install --production && knex migrate:latest"
   },
   "jest": {
     "testEnvironment": "node"
