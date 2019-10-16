@@ -5,6 +5,8 @@ const server = express();
 
 const teamRouter = require("../routers/teams/team-router");
 const gameRouter = require("../routers/games/game-router");
+const usersRouter = require("../routers/users/users-router");
+const favoriteTeamsRouter = require("../routers/favorite_teams/favorite_teams-router");
 
 server.use(helmet());
 server.use(cors());
@@ -12,6 +14,8 @@ server.use(express.json());
 
 server.use("/api/teams", teamRouter);
 server.use("/api/games", gameRouter);
+server.use("/api/users", usersRouter);
+server.use("/api/favoriteTeams", favoriteTeamsRouter);
 
 server.get("/", (req, res) => {
   res.send("api is up");
