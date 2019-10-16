@@ -5,18 +5,19 @@ module.exports = {
     client: "sqlite3",
     useNullAsDefault: true,
     connection: {
-      filename: "./database/auth.db3"
+      filename: "./data/schedule.db3"
     },
-    ool: {
+    pool: {
       afterCreate: (conn, done) => {
         conn.run("PRAGMA foreign_keys = ON", done);
       }
     },
     migrations: {
-      directory: "./database/migrations"
+      directory: "./data/migrations",
+      tableName: "dbmigrations"
     },
     seeds: {
-      directory: "./database/seeds"
+      directory: "./data/seeds"
     }
   },
 
