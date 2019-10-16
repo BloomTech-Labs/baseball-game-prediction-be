@@ -44,10 +44,10 @@ module.exports = {
       password: "password"
     },
     migrations: {
-      directory: "./database/migrations"
+      directory: "./data/migrations"
     },
     seeds: {
-      directory: "./database/seeds"
+      directory: "./data/seeds"
     }
   },
 
