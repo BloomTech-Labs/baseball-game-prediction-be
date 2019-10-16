@@ -44,7 +44,7 @@ router.post("/create", (req, res) => {
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
-      console.log(errorCode, errorMessage);
+      res.status(500).json({ error: errorMessage });
     });
 });
 
@@ -77,7 +77,7 @@ router.post("/login", (req, res) => {
       var errorCode = error.code;
       var errorMessage = error.message;
       // ...
-      console.log(errorCode, errorMessage);
+      res.status(500).json({ error: errorMessage });
     });
 });
 
