@@ -5,7 +5,6 @@ const db = require("./profiles-model");
 
 router.post("/create", (req, res) => {
   const { firebase_id } = req.body;
-  console.log(firebase_id);
   db.getProfileByFirebaseId(firebase_id)
     .then(profile => {
       if (profile.length > 0) {
