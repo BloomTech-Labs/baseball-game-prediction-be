@@ -21,6 +21,11 @@ server.get("/", (req, res) => {
   res.send("api is up");
 });
 
+server.get("/checkStatus", (req, res) => {
+  res.json({ status: `status: ${process.env}` });
+  console.log(process.env);
+});
+
 server.all("*", (req, res) => {
   res.status(404).send({ message: "How did you get here?" });
 });
