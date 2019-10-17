@@ -70,19 +70,4 @@ router.delete('/:favorite_id', (req, res) => {
     })
 })
 
-router.delete('/:favorite_id', restricted, (req, res) => {
-  const {id} = req.params
-  Users.remove(id)
-      .then(deleted => {
-          if(deleted) {
-              return res.status(204).end()
-          } else {
-              res.status(404).json({message: "Could not delete"})
-          }
-      })
-      .catch(error => {
-          res.status(500).json({message: "failed to delete"})
-      })
-})
-
 module.exports = router;
