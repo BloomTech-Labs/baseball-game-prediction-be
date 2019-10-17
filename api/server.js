@@ -22,8 +22,8 @@ server.get("/", (req, res) => {
 });
 
 server.get("/checkStatus", (req, res) => {
-  res.json({ status: `status: ${process.env}` });
-  console.log(process.env);
+  res.json({ status: `status: ${process.env.NODE_ENV}` });
+  console.log(process.env.NODE_ENV);
 });
 
 server.all("*", (req, res) => {
