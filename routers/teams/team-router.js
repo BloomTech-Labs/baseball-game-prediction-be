@@ -30,10 +30,14 @@ router.get('/:team_id', (req, res) => {
 
 // Get teams in a certain division
 
-router.get('/division', (req, res) => {
-    const { division, league } = req.body;
-    console.log(division, league)
-    db.findTeamsByDivision(division, league)
+router.get('/:league/:division', (req, res) => {
+    const { league, division } = req.params;
+    const teamDivision = {
+        "league": league,
+        "division": division
+    }
+    console.log(teamDivision);
+    db.findTeamsByDivision(teamDivision)
     .then(teams => {
         res.status(200).json(teams)
     })
@@ -45,9 +49,10 @@ router.get('/division', (req, res) => {
 
 // Get teams in a certain league
 
-router.get('/league', (req, res) => {
-    console.log(req.body);
-    db.findTeamsByLeague(league)
+router.get('/:league', (req, res) => {
+    const { league } = req.params;
+    const teamLeague = league;
+    db.findTeamsByLeague(teamLeague)
     .then(teams => {
         res.status(200).json(teams)
     })

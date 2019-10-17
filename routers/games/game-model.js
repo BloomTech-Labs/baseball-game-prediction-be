@@ -24,16 +24,17 @@ function getGamesByTeamId(team_id) {
 }
 
 function getGamesByDate(date) {
+    console.log(date);
     return db('games')
     .where('date', date);
 }
 
 function getGamesByCompleted(completed) {
-    if(completed === true){
+    if(completed === "true"){
         return db('games')
-        .where('completed', 1);
+        .where('completed', '1');
     } else {
         return db('games')
-        .where('completed', 0);
+        .where('completed', '0');
     }
 }

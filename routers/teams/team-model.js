@@ -16,15 +16,17 @@ function findTeamById(team_id) {
     .where('team_id', team_id);
 }
 
-function findTeamsByDivision(division, league) {
+function findTeamsByDivision(teamDivision) {
+    console.log(teamDivision);
     return db('teams')
     .where({
-        division: division,
-        league: league
+        league: teamDivision.league,
+        division: teamDivision.division
     });
 }
 
-function findTeamsByLeague({league}) {
+function findTeamsByLeague(teamLeague) {
+    console.log(teamLeague);
     return db('teams')
-    .where('league', league);
+    .where('league', teamLeague);
 }
