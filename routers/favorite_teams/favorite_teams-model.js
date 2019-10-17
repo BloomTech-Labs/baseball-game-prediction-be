@@ -16,10 +16,10 @@ function getFavoriteTeamsByProfileId(profile_id) {
 }
 
 function insertFavoriteTeamByUser(team) {
-  return db('teams')
+  return db('favorite_teams')
   .insert(team)
   .then(ids => {
-    return getFavoriteTeamsByProfileId(ids[0])
+    return getFavoriteTeams(ids[0])
   })
 }
 

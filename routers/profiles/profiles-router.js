@@ -1,18 +1,32 @@
 const router = require("express").Router();
 const db = require("./profiles-model");
-let firebase;
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
+const knex = require('knex')
+const knexfile = require('../../knexfile.js')
+const knexConfig = knexfile.development
+/*let firebase;
 
 if (process.env.NODE_ENV === "production") {
   firebase = require("../../firebase/prod_firebase");
 } else {
   firebase = require("../../firebase/dev_firebase");
-}
+}*/
 
 // Create a profile
 
 router.post("/create", (req, res) => {
-  const { email, password } = req.body;
-  firebase
+  const newUser = req.body;
+  newUser.password = bcrypt.hashSync(newUser.password, 10)
+  db.add(newUser)
+  .then(registeredUser => {
+    res.status(201).json({message: "You are registered"})
+  })
+  .catch(error => {
+    res.status(500).json(error)
+  })
+})
+  /*firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(newUser => {
@@ -46,23 +60,37 @@ router.post("/create", (req, res) => {
       // ...
       res.status(500).json({ error: errorMessage });
     });
-});
+});*/
 
 // Sign in and get user id
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
+  db.getProfileById({email})
+  .first()
+  .then(user => {
+    if (user && bcrypt.compareSync(password, user.password)) {
+      const token = generateToken(user)
+      res.status(200).json({message: "Welcome!", token})
+    } else {
+      res.status(401).json({message: "This is not a registered User"})
+    }
+  })
+  .catch(error => {
+    res.status(500).json(error)
+  })
+})
 
-  firebase
+  /*firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(user => {
       const firebase_id = user.user.uid;
-
       db.getProfileByFirebaseId(firebase_id)
         .then(profile => {
           if (profile) {
-            res.status(200).json(profile);
+            const token = generateToken(profile)           
+            res.status(200).json({message: "Welcome", token});
           } else {
             res.status(500).json({ error: "That profile does not exist" });
           }
@@ -79,7 +107,7 @@ router.post("/login", (req, res) => {
       // ...
       res.status(500).json({ error: errorMessage });
     });
-});
+});*/
 
 // Get all users
 
@@ -115,5 +143,16 @@ router.get("/:profile_id", (req, res) => {
       res.status(500).json({ error: "Server error getting profile" });
     });
 });
+
+function generateToken(profile) {
+  const payload = {
+    email: profile.email, id: profile.id
+  }
+  const secret = "keep it secret, keep it safe"
+  const options = {
+    expiresIn: '1d'
+  }
+  return jwt.sign(payload, secret, options)
+}
 
 module.exports = router;
