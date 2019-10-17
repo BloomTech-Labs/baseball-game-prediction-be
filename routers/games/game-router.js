@@ -30,9 +30,8 @@ router.get('/:game_id', (req, res) => {
 
 // Get games from a certain team
 
-router.get('/:team_id', (req, res) => {
+router.get('/team/:team_id', (req, res) => {
     const { team_id } = req.params;
-    console.log(team_id)
     db.getGamesByTeamId(team_id)
     .then(games => {
         res.status(200).json(games)
@@ -45,8 +44,8 @@ router.get('/:team_id', (req, res) => {
 
 // Get games from a certain date
 
-router.get('/date', (req, res) => {
-    const date = req.body
+router.get('/date/:date', (req, res) => {
+    const { date } = req.params
     db.getGamesByDate(date)
     .then(games => {
         res.status(200).json(games)
@@ -59,8 +58,8 @@ router.get('/date', (req, res) => {
 
 // Get completed or incomplete games
 
-router.get('/completed', (req, res) => {
-    const { completed } = req.body
+router.get('/completed/:completed', (req, res) => {
+    const { completed } = req.params
     db.getGamesByCompleted(completed)
     .then(games => {
         res.status(200).json(games)
