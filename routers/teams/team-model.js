@@ -5,6 +5,7 @@ module.exports = {
     findTeamById,
     findTeamsByDivision,
     findTeamsByLeague,
+    
 };
 
 function findTeams() {
@@ -28,3 +29,4 @@ function findTeamsByLeague({league}) {
     return db('teams')
     .where('league', league);
 }
+
