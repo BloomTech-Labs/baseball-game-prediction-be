@@ -2,10 +2,16 @@ exports.up = function(knex) {
   return knex.schema
     .createTable("profiles", profiles => {
       profiles.increments("profile_id").unique();
-      profiles
+      /*profiles
         .string("firebase_id")
         .unique()
-        .notNullable();
+        .notNullable();*/
+      profiles
+        .string('email')
+        .notNullable()
+        .unique()
+      profiles
+        .string('password')
     })
     .createTable("favorite_teams", favorite_teams => {
       favorite_teams.increments("favorite_id").unique();
