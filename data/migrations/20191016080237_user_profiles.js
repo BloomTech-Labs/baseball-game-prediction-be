@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema
     .createTable("profiles", profiles => {
-      profiles.increments("profile_id").unique();
+      profiles.increments("profile_id").unique()
       /*profiles
         .string("firebase_id")
         .unique()

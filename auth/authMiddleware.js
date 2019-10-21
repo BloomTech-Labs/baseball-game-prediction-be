@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
             if(err) {
                 res.status(401).json({message: "Token is not valid"})
             } else {
-                req.user = {id: decodedToken.profile_id}
+                req.user = {profile_id: decodedToken.id}
                 next()
             }
         })

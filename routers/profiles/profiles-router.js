@@ -146,7 +146,7 @@ router.get("/:profile_id", (req, res) => {
 
 function generateToken(profile) {
   const payload = {
-    email: profile.email, id: profile.id
+    email: profile.email, id: profile.profile_id
   }
   const secret = "keep it secret, keep it safe"
   const options = {
