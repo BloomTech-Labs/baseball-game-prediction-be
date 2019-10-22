@@ -65,8 +65,8 @@ router.post("/create", (req, res) => {
 // Sign in and get user id
 
 router.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  db.getProfileById({email})
+  const { username, password } = req.body;
+  db.getProfileById({username})
   .first()
   .then(user => {
     if (user && bcrypt.compareSync(password, user.password)) {
@@ -146,7 +146,7 @@ router.get("/:profile_id", (req, res) => {
 
 function generateToken(profile) {
   const payload = {
-    email: profile.email, id: profile.profile_id
+    username: profile.username, id: profile.profile_id
   }
   const secret = "keep it secret, keep it safe"
   const options = {

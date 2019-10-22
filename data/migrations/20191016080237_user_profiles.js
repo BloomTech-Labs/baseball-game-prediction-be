@@ -7,7 +7,7 @@ exports.up = function(knex) {
         .unique()
         .notNullable();*/
       profiles
-        .string('email')
+        .string('username')
         .notNullable()
         .unique()
       profiles
