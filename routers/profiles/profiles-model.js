@@ -12,8 +12,8 @@ function getProfiles() {
   return db("profiles").select("*");
 }
 
-function getProfileById(profile_id) {
-  return db("profiles").where("profile_id", profile_id);
+function getProfileById(filter) {
+  return db("profiles").where(filter);
 }
 
 /*function getProfileByFirebaseId(firebase_id) {
