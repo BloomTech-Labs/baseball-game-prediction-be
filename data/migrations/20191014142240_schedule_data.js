@@ -14,9 +14,12 @@ exports.up = function(knex) {
     .string('division', 255)
     .notNullable();
     teams
+   
+
     .string('logo', 255);
     teams
     .string('abbreviation', 255);
+
   })
   .createTable('games', games => {
     games.increments('game_id')
