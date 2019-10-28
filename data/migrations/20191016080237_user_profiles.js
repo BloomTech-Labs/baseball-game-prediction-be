@@ -22,6 +22,14 @@ exports.up = function(knex) {
         .references("profile_id")
         .inTable("profiles")
         .onUpdate("CASCADE")
+        .onDelete("CASCADE");        
+      favorite_teams
+        .integer("team_id")
+        .unsigned()
+        .notNullable()
+        .references("team_id")
+        .inTable("teams")
+        .onUpdate("CASCADE")
         .onDelete("CASCADE");
       favorite_teams.string("team_name");
     });
