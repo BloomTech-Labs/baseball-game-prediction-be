@@ -16,11 +16,11 @@ function getFavoriteTeamsByProfileId(profile_id) {
 }
 
 function insertFavoriteTeamByUser(team) {
-  return db('favorite_teams')
-  .insert(team)
-  .then(ids => {
-    return getFavoriteTeams(ids[0])
-  })
+  return db("favorite_teams")
+    .insert(team)
+    .then(ids => {
+      return getFavoriteTeams(ids[0]);
+    });
 }
 
 /*function insertFavoriteTeamByUser(teams) {
@@ -36,8 +36,7 @@ function insertFavoriteTeamByUser(team) {
 }*/
 
 function removeFavoriteTeamByUser(id) {
-  return db('favorite_teams')
+  return db("favorite_teams")
     .where("favorite_id", id)
-    .del()
+    .del();
 }
-

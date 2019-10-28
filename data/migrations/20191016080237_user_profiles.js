@@ -1,17 +1,16 @@
 exports.up = function(knex) {
   return knex.schema
     .createTable("profiles", profiles => {
-      profiles.increments("profile_id").unique()
+      profiles.increments("profile_id").unique();
       /*profiles
         .string("firebase_id")
         .unique()
         .notNullable();*/
       profiles
-        .string('username')
+        .string("username")
         .notNullable()
-        .unique()
-      profiles
-        .string('password')
+        .unique();
+      profiles.string("password");
     })
     .createTable("favorite_teams", favorite_teams => {
       favorite_teams.increments("favorite_id").unique();
@@ -22,7 +21,7 @@ exports.up = function(knex) {
         .references("profile_id")
         .inTable("profiles")
         .onUpdate("CASCADE")
-        .onDelete("CASCADE");        
+        .onDelete("CASCADE");
       favorite_teams
         .integer("team_id")
         .unsigned()
@@ -31,7 +30,6 @@ exports.up = function(knex) {
         .inTable("teams")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
-      favorite_teams.string("team_name");
     });
 };
 

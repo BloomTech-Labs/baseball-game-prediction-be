@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const db = require("./favorite_teams-model");
-const restricted = require('../../auth/authMiddleware.js')
+const teamsdb = require("../teams/team-model");
+const restricted = require("../../auth/authMiddleware.js");
 
 // Get all favorite teams
 
@@ -28,7 +29,10 @@ router.get("/:profile_id", (req, res) => {
   db.getFavoriteTeamsByProfileId(profile_id)
     .then(favorites => {
       if (favorites) {
-        res.status(200).json(favorites);
+        favorites = favorites.map(fav => fav.team_id);
+        teamsdb
+          .findTeamsByManyIds(favorites)
+          .then(teams => res.status(200).json(teams));
       } else {
         res
           .status(500)
@@ -43,35 +47,35 @@ router.get("/:profile_id", (req, res) => {
 
 // post favorite team to profile
 
-router.post('/', restricted, (req, res) => {
-  const teamData = req.body
-  const profile_id = req.user.profile_id
-  console.log("req", req.user)
-  db.insertFavoriteTeamByUser({...teamData, profile_id})
+router.post("/", restricted, (req, res) => {
+  const teamData = req.body;
+  const profile_id = req.user.profile_id;
+  console.log("req", req.user);
+  db.insertFavoriteTeamByUser({ ...teamData, profile_id })
     .then(team => {
-      res.status(200).json(team)
+      res.status(200).json(team);
     })
     .catch(error => {
-      res.status(500).json({message: "Failed to Post"})
-      console.log("error", error)
-    })
-})
+      res.status(500).json({ message: "Failed to Post" });
+      console.log("error", error);
+    });
+});
 
 // delete favorite team from profile
 
-router.delete('/:favorite_id', (req, res) => {
-  const {favorite_id} = req.params
+router.delete("/:favorite_id", (req, res) => {
+  const { favorite_id } = req.params;
   db.removeFavoriteTeamByUser(favorite_id)
     .then(deleted => {
-      if(deleted) {
-        return res.status(204).end()
+      if (deleted) {
+        return res.status(204).end();
       } else {
-        res.status(404).json({message: "could not delete"})
+        res.status(404).json({ message: "could not delete" });
       }
     })
     .catch(error => {
-      res.status(500).json({message: "Failed to delete"})
-    })
-})
+      res.status(500).json({ message: "Failed to delete" });
+    });
+});
 
 module.exports = router;
