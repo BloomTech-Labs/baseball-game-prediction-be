@@ -71,7 +71,7 @@ router.post("/login", (req, res) => {
   .then(user => {
     if (user && bcrypt.compareSync(password, user.password)) {
       const token = generateToken(user)
-      res.status(200).json({message: "Welcome!", token})
+      res.status(200).json({message: "Welcome!", token, id: user.profile_id})
     } else {
       res.status(401).json({message: "This is not a registered User"})
     }
@@ -130,7 +130,7 @@ router.get("/", (req, res) => {
 
 router.get("/:profile_id", (req, res) => {
   const { profile_id } = req.params;
-  db.getProfileById(profile_id)
+  db.profileId(profile_id)
     .then(profile => {
       if (profile) {
         res.status(200).json(profile);

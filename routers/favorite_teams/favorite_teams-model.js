@@ -23,6 +23,18 @@ function insertFavoriteTeamByUser(team) {
   })
 }
 
+/*function insertFavoriteTeamByUser(teams) {
+  return db('teams').select("team_name", "team_id")
+  .then(team => {
+    return db('favorite_teams')
+    .insert(teams)
+  .then(ids => {
+    return getFavoriteTeams(ids[0])
+  })
+  })
+  
+}*/
+
 function removeFavoriteTeamByUser(id) {
   return db('favorite_teams')
     .where("favorite_id", id)

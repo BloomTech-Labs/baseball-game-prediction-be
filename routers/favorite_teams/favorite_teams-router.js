@@ -4,7 +4,7 @@ const restricted = require('../../auth/authMiddleware.js')
 
 // Get all favorite teams
 
-router.get("/", restricted, (req, res) => {
+router.get("/", (req, res) => {
   db.getFavoriteTeams()
     .then(favorites => {
       if (favorites) {

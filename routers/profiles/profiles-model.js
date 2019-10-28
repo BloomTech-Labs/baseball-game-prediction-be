@@ -5,11 +5,16 @@ module.exports = {
   getProfileById,
   /*getProfileByFirebaseId,*/
   /*addProfile*/
-  add
+  add,
+  profileId
 };
 
 function getProfiles() {
   return db("profiles").select("*");
+}
+
+function profileId(profile_id) {
+  return db("profiles").where("profile_id", profile_id)
 }
 
 function getProfileById(filter) {
