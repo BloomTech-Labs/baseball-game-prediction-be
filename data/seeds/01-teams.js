@@ -119,7 +119,7 @@ exports.seed = function(knex) {
       league: "NL",
       division: "East",
       logo: null,
-      abbreviation: "WSH"
+      abbreviation: "WAS"
     },
     {
       team_id: 16,
