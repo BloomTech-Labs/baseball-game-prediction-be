@@ -71,6 +71,7 @@ router.delete("/:favorite_id", (req, res) => {
         return res.status(204).end();
       } else {
         res.status(404).json({ message: "could not delete" });
+        //console.log(res.status(404))
       }
     })
     .catch(error => {
