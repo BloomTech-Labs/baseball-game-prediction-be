@@ -37,6 +37,7 @@ function insertFavoriteTeamByUser(team) {
 
 function removeFavoriteTeamByUser(id) {
   return db("favorite_teams")
-    .where("favorite_id", id)
+    .where("team_id", id)
     .del();
 }
+
