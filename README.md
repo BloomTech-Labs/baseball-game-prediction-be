@@ -8,7 +8,7 @@
 | <a href="#profile-endpoints">Profile_Endpoints</a> 
 | <a href="#team-endpoints">Team_Endpoints</a>
 | <a href="#favorite-teams-endpoints">Favorite_Teams_Endpoints</a>
-  <a href="#contributing">Contributing</a>
+| <a href="#contributing">Contributing</a> |
 </div>
 
 #### Backend delpoyed at [Heroku](https://bgp-be-staging.herokuapp.com/) <br>
