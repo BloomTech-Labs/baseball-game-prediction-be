@@ -1,134 +1,268 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
-
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at [🚫name service here](🚫add URL here) <br>
+## Table of Contents: ##
 
-## 1️⃣ Getting started
+<div>
+| <a href="#base-api">Base_Api</a> 
+| <a href="#auth-endpoints">Auth_Endpoints</a> 
+| <a href="#profile-endpoints">Profile_Endpoints</a> 
+| <a href="#team-endpoints">Team_Endpoints</a>
+| <a href="#favorite-teams-endpoints">Favorite_Teams_Endpoints</a>
+  <a href="#contributing">Contributing</a>
+</div>
+
+#### Backend delpoyed at [Heroku](https://bgp-be-staging.herokuapp.com/) <br>
+
+## Base API
 
 To get the server running locally:
 
-🚫 adjust these scripts to match your project
-
 - Clone this repo
-- **yarn install** to install all required dependencies
-- **yarn server** to start the local server
-- **yarn test** to start server using testing environment
+- **npm install** to install all required dependencies
+- **npm start or npm server** to start the local server
+- **npm test** to start server using testing environment
 
-### Backend framework goes here
+## Auth Endpoints
 
-🚫 Why did you choose this framework?
+### Register ###
 
--    Point One
--    Point Two
--    Point Three
--    Point Four
+> Listed endpoint:
+>> POST /api/profiles/create
 
-## 2️⃣ Endpoints
+Creates a new user.
 
-🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
-
-#### Organization Routes
-
-| Method | Endpoint                | Access Control | Description                                  |
-| ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
-
-#### User Routes
-
-| Method | Endpoint                | Access Control      | Description                                        |
-| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/users/current`        | all users           | Returns info for the logged in user.               |
-| GET    | `/users/org/:userId`    | owners, supervisors | Returns all users for an organization.             |
-| GET    | `/users/:userId`        | owners, supervisors | Returns info for a single user.                    |
-| POST   | `/users/register/owner` | none                | Creates a new user as owner of a new organization. |
-| PUT    | `/users/:userId`        | owners, supervisors |                                                    |
-| DELETE | `/users/:userId`        | owners, supervisors |                                                    |
-
-# Data Model
-
-🚫This is just an example. Replace this with your data model
-
-#### 2️⃣ ORGANIZATIONS
-
----
+Example request body: 
 
 ```
-{
-  id: UUID
-  name: STRING
-  industry: STRING
-  paid: BOOLEAN
-  customer_id: STRING
-  subscription_id: STRING
+{ 
+    "username": "Levi",
+    "password": "lambda4ever",
 }
 ```
 
-#### USERS
+Successful status (201):
+Responds with message "You are registered"
 
----
+### Login ###
+
+> Listed endpoint:
+>> POST /api/profiles/login
+
+Logs user in and provides Authentication token to be stored client-side in local storage.
+
+Example request body:
 
 ```
 {
-  id: UUID
-  organization_id: UUID foreign key in ORGANIZATIONS table
-  first_name: STRING
-  last_name: STRING
-  role: STRING [ 'owner', 'supervisor', 'employee' ]
-  email: STRING
-  phone: STRING
-  cal_visit: BOOLEAN
-  emp_visit: BOOLEAN
-  emailpref: BOOLEAN
-  phonepref: BOOLEAN
+    "username": "Levi",
+    "password": "lambda4ever"
 }
 ```
 
-## 2️⃣ Actions
+Successful status (200):
+Responds with:
 
-🚫 This is an example, replace this with the actions that pertain to your backend
+```
+{
+    message: "Welcome!",
+    id: {user's profile_id},
+    token: ${auth_token}
+}
+```
 
-`getOrgs()` -> Returns all organizations
+___
+Be sure to save the ${auth_token} to local storage as all requests below this point require it as a header,
+ie: (authorization: ${auth_token}) should be part of your req.header in your axiosWithAuth function.
+___
 
-`getOrg(orgId)` -> Returns a single organization by ID
+## Profile Endpoints
 
-`addOrg(org)` -> Returns the created org
+### Get Users ###
 
-`updateOrg(orgId)` -> Update an organization by ID
+> Listed endpoint:
+>> GET /api/profiles
 
-`deleteOrg(orgId)` -> Delete an organization by ID
-<br>
-<br>
-<br>
-`getUsers(orgId)` -> if no param all users
+Gets an array of all users.
 
-`getUser(userId)` -> Returns a single user by user ID
+Successful status (200):
+Responds with and array of user objects.
 
-`addUser(user object)` --> Creates a new user and returns that user. Also creates 7 availabilities defaulted to hours of operation for their organization.
+### Get User By ID ###
 
-`updateUser(userId, changes object)` -> Updates a single user by ID.
+> Listed endpoint:
+>> GET /api/profiles/:profile_id
 
-`deleteUser(userId)` -> deletes everything dependent on the user
+Gets an individual user by their user id.
 
-## 3️⃣ Environment Variables
+Successful status (200):
+Responds with array containing the specific user object.
 
-In order for the app to function correctly, the user must set up their own environment variables.
+ie:
 
-create a .env file that includes the following:
+```
+{
+    "user_id": "6",
+    "name": "Levi",
+    "password": "lambda4ever",
+}
+```
 
-🚫 These are just examples, replace them with the specifics for your app
-    
-    *  STAGING_DB - optional development db for using functionality not available in SQLite
-    *  NODE_ENV - set to "development" until ready for "production"
-    *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
-    *  SENDGRID_API_KEY - this is generated in your Sendgrid account
-    *  stripe_secret - this is generated in the Stripe dashboard
+## Team Endpoints
+
+### Get All Teams ###
+
+> Listed endpoint:
+>> GET /api/teams
+
+Gets an array of all teams.
+
+Successful status (200):
+Responds with and array of team objects.
+
+### Get Team By ID ###
+
+> Listed endpoint:
+>> GET /api/teams/:team_id
+
+Gets an individual team by their team id.
+
+Successful status (200):
+Responds with array containing the specific team object.
+
+ie:
+
+```
+{
+    "team_id": "19",
+    "team_name": "Seattle Mariners",
+    "league": "AL",
+    "division": "West",
+    "logo": "URL" (Not in this release),
+    "abbreviation": "SEA"
+}
+```
+
+### Get Teams By Division ###
+
+> Listed endpoint:
+>> GET /api/teams/:league/:division
+
+Gets an array of teams by their division
+
+Successful status (200):
+Responds with array containing the team objects.
+
+ie:
+
+```
+{
+    "team_id": "19",
+    "team_name": "Seattle Mariners",
+    "league": "AL",
+    "division": "West",
+    "logo": "URL" (Not in this release),
+    "abbreviation": "SEA"
+}
+```
+
+### Get Teams By League ###
+
+> Listed endpoint:
+>> GET /api/teams/:league
+
+Gets an array of teams by their league
+
+Successful status (200):
+Responds with array containing the team objects.
+
+ie:
+
+```
+{
+    "team_id": "19",
+    "team_name": "Seattle Mariners",
+    "league": "AL",
+    "division": "West",
+    "logo": "URL" (Not in this release),
+    "abbreviation": "SEA"
+}
+```
+
+## Favorite Team Endpoints
+
+### Get All Favorite Teams ###
+
+> Listed endpoint:
+>> GET /api/favoriteTeams
+
+Gets an array of all favorite teams.
+
+Successful status (200):
+Responds with and array of team objects.
+
+### Get Favorite Teams By Profile ID ###
+
+> Listed endpoint:
+>> GET /api/favoriteTeams/:profile_id
+
+Gets an array of a user's favorite teams based on their profile id.
+
+Successful status (200):
+Responds with array containing the team objects.
+
+ie:
+
+```
+{
+    "team_id": "19",
+    "team_name": "Seattle Mariners",
+    "league": "AL",
+    "division": "West",
+    "logo": "URL" (Not in this release),
+    "abbreviation": "SEA"
+}
+```
+
+### Add A New Favorite Team ###
+
+> Listed endpoint:
+>> POST /api/favoriteTeams
+
+Adds a favorite team to a user's list of favorite teams.
+
+Example request body:
+
+```
+{
+    "team_id": "19",
+    "team_name": "Seattle Mariners",
+    "league": "AL",
+    "division": "West",
+    "logo": "URL" (Not in this release),
+    "abbreviation": "SEA"
+}
+```
+
+Successful status (200):
+Responds with:
+
+```
+{
+    "favorite_id": "1",
+    "profile_id": "6",
+    "team_id": "19"
+}
+```
+
+### Delete A Favorite Team ###
+
+> Listed endpoint:
+>> DELETE /api/favoriteTeams/:favorite_id
+
+Deletes a favorite team from a user's list of favorite teams.
+
+Successful status (204):
+Responds with nothing.
     
 ## Contributing
 
@@ -165,8 +299,3 @@ Remember that this project is licensed under the MIT license, and by submitting 
 ### Attribution
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
-
-## Documentation
-
-See [Frontend Documentation](🚫link to your frontend readme here) for details on the fronend of our project.
-🚫 Add DS iOS and/or Andriod links here if applicable.
