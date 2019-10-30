@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
 
 // Get favorite teams by profile id
 
-router.get("/:profile_id", (req, res) => {
+/*router.get("/:profile_id", (req, res) => {
   const { profile_id } = req.params;
   db.getFavoriteTeamsByProfileId(profile_id)
     .then(favorites => {
@@ -43,7 +43,18 @@ router.get("/:profile_id", (req, res) => {
       console.log(err);
       res.status(500).json({ error: "Server error getting favorite teams" });
     });
-});
+  });*/
+
+  router.get('/:profile_id', (req, res) => {
+    const {profile_id} = req.params
+    db.getFavoriteTeamsByProfileId(profile_id)
+    .then(favorites => {
+      res.status(200).json(favorites)
+    })
+    .catch(error => {
+      res.status(500).json({error: "failure to retrieve favorite teams"})
+    })
+  })
 
 // post favorite team to profile
 
