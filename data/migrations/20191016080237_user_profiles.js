@@ -14,6 +14,7 @@ exports.up = function(knex) {
     })
     .createTable("favorite_teams", favorite_teams => {
       favorite_teams.increments("favorite_id").unique();
+      favorite_teams.string('abbreviation')
       favorite_teams
         .integer("profile_id")
         .unsigned()
