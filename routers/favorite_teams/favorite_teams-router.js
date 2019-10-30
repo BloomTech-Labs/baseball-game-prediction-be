@@ -50,7 +50,6 @@ router.get("/:profile_id", (req, res) => {
 router.post("/", restricted, (req, res) => {
   const teamData = req.body;
   //const profile_id = req.user.profile_id;
-  console.log("req", req.user);
   db.insertFavoriteTeamByUser(teamData)
     .then(team => {
       res.status(200).json(team);
