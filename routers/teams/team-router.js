@@ -49,7 +49,7 @@ router.get('/:league/:division', (req, res) => {
 // Get teams in a certain league
 
 router.get('/:league', (req, res) => {
-    const { league } = req.params;
+    const { league } = req.param;
     const teamLeague = league;
     db.findTeamsByLeague(teamLeague)
     .then(teams => {
@@ -58,6 +58,20 @@ router.get('/:league', (req, res) => {
     .catch(err => {
         console.log(err);
         res.status(500).json({ error: "Server error getting teams in that league" })
+    });
+})
+
+// Get team by abbreviation
+
+router.post('/abbr', (req, res) => {
+    const { abbreviation } = req.body;
+    db.findTeamByAbbr(abbreviation)
+    .then(team => {
+        res.status(200).json(team);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: "Server error getting team by abbreviation" })
     });
 })
 
