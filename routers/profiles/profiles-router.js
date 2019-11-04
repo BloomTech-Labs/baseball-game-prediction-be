@@ -26,6 +26,21 @@ router.post("/create", (req, res) => {
     res.status(500).json(error)
   })
 })
+
+router.delete('/:profile_id', (req, res) => {
+  const {profile_id} = req.params
+  db.deleteProfile(profile_id)
+  .then(deleted => {
+    if(deleted) {
+      res.json({removed: deleted})
+    } else {
+      res.status(404).json({message: "could not find Profile with given id"})
+    }
+  })
+  .catch(err => {
+    res.status(500).json({message: "Failed to delete profile"})
+  })
+})
   /*firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)

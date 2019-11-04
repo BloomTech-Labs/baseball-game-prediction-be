@@ -15,6 +15,7 @@ exports.up = function(knex) {
     .createTable("favorite_teams", favorite_teams => {
       favorite_teams.increments("favorite_id").unique();
       favorite_teams.string('abbreviation')
+      favorite_teams.integer("favorite").unique()
       favorite_teams
         .integer("profile_id")
         .unsigned()
@@ -24,7 +25,7 @@ exports.up = function(knex) {
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
       favorite_teams
-        .integer("team_id")
+        .integer("team_id")        
         .unsigned()
         .notNullable()
         .references("team_id")
