@@ -14,11 +14,13 @@ exports.up = function(knex) {
     .string('division', 255)
     .notNullable();
     teams
-   
-
     .string('logo', 255);
     teams
     .string('abbreviation', 255);
+    teams
+    .string('manager', 255)
+    teams
+    .integer('game_count')
 
   })
   .createTable('games', games => {

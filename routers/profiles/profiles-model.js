@@ -6,7 +6,8 @@ module.exports = {
   /*getProfileByFirebaseId,*/
   /*addProfile*/
   add,
-  profileId
+  profileId,
+  deleteProfile
 };
 
 function getProfiles() {
@@ -40,3 +41,12 @@ function add(profile) {
     return getProfileById
   })
 }
+
+function deleteProfile(profile_id) {
+  return db('profiles')
+    .where({profile_id})
+    .del()
+}
+
+
+

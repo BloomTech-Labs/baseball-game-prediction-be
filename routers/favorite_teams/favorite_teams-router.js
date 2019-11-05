@@ -60,13 +60,19 @@ router.get("/", (req, res) => {
 
 router.post("/", restricted, (req, res) => {
   const teamData = req.body;
+<<<<<<< HEAD
+  const profile_id = req.user.profile_id;
+  console.log("req", req.user);
+  db.insertFavoriteTeamByUser({...teamData, profile_id})
+=======
   //const profile_id = req.user.profile_id;
   db.insertFavoriteTeamByUser(teamData)
+>>>>>>> 8866ca8fcef5e854551d96736b52941a8e9eb141
     .then(team => {
       res.status(200).json(team);
     })
     .catch(error => {
-      res.status(500).json({ message: "Failed to Post" });
+      res.status(500).json({message: "Failed to Post" });
       console.log("error", error);
     });
 });
