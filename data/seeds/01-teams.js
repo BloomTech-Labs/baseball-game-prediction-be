@@ -7,7 +7,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "West",
       logo: null,
-      abbreviation: "COL"
+      abbreviation: "COL",
+      manager: "Bud Black",
+      game_count: 0
     },
     {
       team_id: 2,
@@ -15,7 +17,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "West",
       logo: null,
-      abbreviation: "ARI"
+      abbreviation: "ARI",
+      manager: "Torey Lovullo",
+      game_count: 0
     },
     {
       team_id: 3,
@@ -23,7 +27,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "West",
       logo: null,
-      abbreviation: "LAD"
+      abbreviation: "LAD",
+      manager: "Dave Roberts",
+      game_count: 0
     },
     {
       team_id: 4,
@@ -31,7 +37,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "West",
       logo: null,
-      abbreviation: "SD"
+      abbreviation: "SD",
+      manager: "Jayce Tingler",
+      game_count: 0
     },
     {
       team_id: 5,
@@ -39,7 +47,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "West",
       logo: null,
-      abbreviation: "SF"
+      abbreviation: "SF",
+      manager: "vacant",
+      game_count: 0
     },
     {
       team_id: 6,
@@ -47,7 +57,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "Central",
       logo: null,
-      abbreviation: "CHC"
+      abbreviation: "CHC",
+      manager: "David Ross",
+      game_count: 0
     },
     {
       team_id: 7,
@@ -55,7 +67,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "Central",
       logo: null,
-      abbreviation: "CIN"
+      abbreviation: "CIN",
+      manager: "David Bell",
+      game_count: 0
     },
     {
       team_id: 8,
@@ -63,7 +77,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "Central",
       logo: null,
-      abbreviation: "MIL"
+      abbreviation: "MIL",
+      manager: "Craig Counsell",
+      game_count: 0
     },
     {
       team_id: 9,
@@ -71,7 +87,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "Central",
       logo: null,
-      abbreviation: "PIT"
+      abbreviation: "PIT",
+      manager: "vacant",
+      game_count: 0
     },
     {
       team_id: 10,
@@ -79,7 +97,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "Central",
       logo: null,
-      abbreviation: "STL"
+      abbreviation: "STL",
+      manager: "Mike Shildt",
+      game_count: 0
     },
     {
       team_id: 11,
@@ -87,7 +107,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "East",
       logo: null,
-      abbreviation: "ATL"
+      abbreviation: "ATL",
+      manager: "Brian Snitker",
+      game_count: 0
     },
     {
       team_id: 12,
@@ -95,7 +117,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "East",
       logo: null,
-      abbreviation: "MIA"
+      abbreviation: "MIA",
+      manager: "Don Mattingly",
+      game_count: 0
     },
     {
       team_id: 13,
@@ -103,7 +127,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "East",
       logo: null,
-      abbreviation: "NYM"
+      abbreviation: "NYM",
+      manager: "Carlos Beltran",
+      game_count: 0
     },
     {
       team_id: 14,
@@ -111,7 +137,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "East",
       logo: null,
-      abbreviation: "PHI"
+      abbreviation: "PHI",
+      manager: "Joe Girardi",
+      game_count: 0
     },
     {
       team_id: 15,
@@ -119,7 +147,9 @@ exports.seed = function(knex) {
       league: "NL",
       division: "East",
       logo: null,
-      abbreviation: "WAS"
+      abbreviation: "WAS",
+      manager: "Dave Martinez",
+      game_count: 0
     },
     {
       team_id: 16,
@@ -127,7 +157,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "West",
       logo: null,
-      abbreviation: "HOU"
+      abbreviation: "HOU",
+      manager: "A.J. Hinch",
+      game_count: 0
     },
     {
       team_id: 17,
@@ -135,7 +167,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "West",
       logo: null,
-      abbreviation: "LAA"
+      abbreviation: "LAA",
+      manager: "Joe Maddon",
+      game_count: 0
     },
     {
       team_id: 18,
@@ -143,7 +177,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "West",
       logo: null,
-      abbreviation: "OAK"
+      abbreviation: "OAK",
+      manager: "Bob Melvin",
+      game_count: 0
     },
     {
       team_id: 19,
@@ -151,7 +187,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "West",
       logo: null,
-      abbreviation: "SEA"
+      abbreviation: "SEA",
+      manager: "Scott Servais",
+      game_count: 0
     },
     {
       team_id: 20,
@@ -159,7 +197,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "West",
       logo: null,
-      abbreviation: "TEX"
+      abbreviation: "TEX",
+      manager: "Chris Woodward",
+      game_count: 0
     },
     {
       team_id: 21,
@@ -167,7 +207,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "Central",
       logo: null,
-      abbreviation: "CWS"
+      abbreviation: "CWS",
+      manager: "Rick Renteria",
+      game_count: 0
     },
     {
       team_id: 22,
@@ -175,7 +217,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "Central",
       logo: null,
-      abbreviation: "CLE"
+      abbreviation: "CLE",
+      manager: "Terry Francona",
+      game_count: 0
     },
     {
       team_id: 23,
@@ -183,7 +227,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "Central",
       logo: null,
-      abbreviation: "DET"
+      abbreviation: "DET",
+      manager: "Ron Gardenhire",
+      game_count: 0
     },
     {
       team_id: 24,
@@ -191,7 +237,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "Central",
       logo: null,
-      abbreviation: "KC"
+      abbreviation: "KC",
+      manager: "Mike Matheny",
+      game_count: 0
     },
     {
       team_id: 25,
@@ -199,7 +247,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "Central",
       logo: null,
-      abbreviation: "MIN"
+      abbreviation: "MIN",
+      manager: "Rocco Baldelli",
+      game_count: 0
     },
     {
       team_id: 26,
@@ -207,7 +257,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "East",
       logo: null,
-      abbreviation: "BAL"
+      abbreviation: "BAL",
+      manager: "Brandon Hyde",
+      game_count: 0
     },
     {
       team_id: 27,
@@ -215,7 +267,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "East",
       logo: null,
-      abbreviation: "BOS"
+      abbreviation: "BOS",
+      manager: " Alex Cora",
+      game_count: 0
     },
     {
       team_id: 28,
@@ -223,7 +277,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "East",
       logo: null,
-      abbreviation: "NYY"
+      abbreviation: "NYY",
+      manager: "Aaron Boone",
+      game_count: 0
     },
     {
       team_id: 29,
@@ -231,7 +287,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "East",
       logo: null,
-      abbreviation: "TB"
+      abbreviation: "TB",
+      manager: "Kevin Cash",
+      game_count: 0
     },
     {
       team_id: 30,
@@ -239,7 +297,9 @@ exports.seed = function(knex) {
       league: "AL",
       division: "East",
       logo: null,
-      abbreviation: "TOR"
+      abbreviation: "TOR",
+      manager: "Charlie Montoyo",
+      game_count: 0
     }
   ]);
 };
