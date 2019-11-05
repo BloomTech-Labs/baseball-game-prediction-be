@@ -36,7 +36,6 @@ router.get('/:league/:division', (req, res) => {
         "league": league,
         "division": division
     }
-    console.log(teamDivision);
     db.findTeamsByDivision(teamDivision)
     .then(teams => {
         res.status(200).json(teams)

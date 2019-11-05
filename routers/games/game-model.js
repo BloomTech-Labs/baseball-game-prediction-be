@@ -24,7 +24,6 @@ function getGamesByTeamId(team_id) {
 }
 
 function getGamesByDate(date) {
-    console.log(date);
     return db('games')
     .where('date', date);
 }

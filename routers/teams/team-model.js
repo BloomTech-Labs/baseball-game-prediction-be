@@ -33,7 +33,6 @@ function findTeamsByManyIds(ids) {
 }
 
 function findTeamsByDivision(teamDivision) {
-  console.log(teamDivision);
   return db("teams").where({
     league: teamDivision.league,
     division: teamDivision.division
@@ -41,7 +40,6 @@ function findTeamsByDivision(teamDivision) {
 }
 
 function findTeamsByLeague(teamLeague) {
-  console.log(teamLeague);
   return db("teams").where("league", teamLeague);
 }
 
