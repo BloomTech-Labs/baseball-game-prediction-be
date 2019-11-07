@@ -45,34 +45,28 @@ router.get("/", (req, res) => {
     });
   });*/
 
-  router.get('/:profile_id', (req, res) => {
-    const {profile_id} = req.params
-    db.getFavoriteTeamsByProfileId(profile_id)
+router.get("/:profile_id", (req, res) => {
+  const { profile_id } = req.params;
+  db.getFavoriteTeamsByProfileId(profile_id)
     .then(favorites => {
-      res.status(200).json(favorites)
+      res.status(200).json(favorites);
     })
     .catch(error => {
-      res.status(500).json({error: "failure to retrieve favorite teams"})
-    })
-  })
+      res.status(500).json({ error: "failure to retrieve favorite teams" });
+    });
+});
 
 // post favorite team to profile
 
 router.post("/", restricted, (req, res) => {
   const teamData = req.body;
-<<<<<<< HEAD
-  const profile_id = req.user.profile_id;
-  console.log("req", req.user);
-  db.insertFavoriteTeamByUser({...teamData, profile_id})
-=======
   //const profile_id = req.user.profile_id;
   db.insertFavoriteTeamByUser(teamData)
->>>>>>> 8866ca8fcef5e854551d96736b52941a8e9eb141
     .then(team => {
       res.status(200).json(team);
     })
     .catch(error => {
-      res.status(500).json({message: "Failed to Post" });
+      res.status(500).json({ message: "Failed to Post" });
       console.log("error", error);
     });
 });
