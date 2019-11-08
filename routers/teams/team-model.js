@@ -6,7 +6,8 @@ module.exports = {
   findTeamsByDivision,
   findTeamsByLeague,
   findTeamsByManyIds,
-  //deleteFavoriteTeam
+  //deleteFavoriteTeam,
+  findTeamByAbbr
 };
 
 function findTeams() {
@@ -14,12 +15,11 @@ function findTeams() {
 }
 
 function findTeamById(team_id) {
-  return db("teams").where("team_id", team_id)
-   
+  return db("teams").where("team_id", team_id);
 }
 
 function findTeamsByManyIds(ids) {
-  return db("teams").whereIn("team_id", ids)
+  return db("teams").whereIn("team_id", ids);
   /*.join("favorite_teams", "favorite_teams.team_id", "=", "teams.team_id")
   .select(
     "favorite_teams.favorite_id",
@@ -53,3 +53,7 @@ function findTeamsByLeague(teamLeague) {
       "team.team_name"
     )
 }*/
+
+function findTeamByAbbr(abbr) {
+  return db("teams").where("abbreviation", abbr);
+}
