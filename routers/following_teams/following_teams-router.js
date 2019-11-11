@@ -28,4 +28,15 @@ router.get("/profile_id", (req, res) => {
     })
 })
 
+router.post("/", restricted, (req, res) => {
+    const data = req.body
+    db.insertFollowingTeams(data)
+    .then(team => {
+        res.status(200).json(team)
+    })
+    .catch(error => {
+        res.status(500).json({message: "Server Error"})
+    })
+})
+
 module.exports = router
