@@ -17,4 +17,15 @@ router.get("/", (req, res) => {
     })
 })
 
+router.get("/profile_id", (req, res) => {
+    const {profile_id} = req.params
+    db.getFollowingTeamsByProfileId(profile_id)
+    .then(following => {
+        res.status(200).json(following)
+    })
+    .catch(error => {
+        res.status(500).json({message: "Server Error"})
+    })
+})
+
 module.exports = router
