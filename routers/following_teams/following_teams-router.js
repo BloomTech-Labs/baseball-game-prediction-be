@@ -39,4 +39,19 @@ router.post("/", restricted, (req, res) => {
     })
 })
 
+router.delete(":following_id", restricted, (req, res) => {
+    const {following_id} = req.params
+    db.removeFollowingTeams(following_id)
+        .then(deleted => {
+            if (deleted) {
+                return res.status(204).end()
+            } else {
+                res.status(404).json({message: "Could not delete"})
+            }
+        })
+        .catch(error => {
+            res.status(500).json({message: "Server Error"})
+        })
+})
+
 module.exports = router
