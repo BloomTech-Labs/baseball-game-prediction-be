@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
     })
 })
 
-router.get("/profile_id", (req, res) => {
+router.get("/:profile_id", (req, res) => {
     const {profile_id} = req.params
     db.getFollowingTeamsByProfileId(profile_id)
     .then(following => {
@@ -39,7 +39,7 @@ router.post("/", restricted, (req, res) => {
     })
 })
 
-router.delete(":following_id", restricted, (req, res) => {
+router.delete("/:following_id", restricted, (req, res) => {
     const {following_id} = req.params
     db.removeFollowingTeams(following_id)
         .then(deleted => {
